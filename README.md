@@ -37,7 +37,7 @@ This project demonstrates the integration of Spring Boot with Amazon S3 to provi
         region:
           static: us-east-1
     ```
-Ensure these credentials have sufficient permissions to perform S3 bucket operations.
+    Ensure these credentials have sufficient permissions to perform S3 bucket operations.
 
 3. **Maven Dependencies**:
    Ensure all dependencies in pom.xml are correctly downloaded by running:
