@@ -1,5 +1,6 @@
 package com.example.springboot_aws_s3.service;
 
+import io.github.pixee.security.Filenames;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class StorageService {
 
     public String uploadFile(MultipartFile file){
         File fileObj = convertToFile(file);
-        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        String fileName = System.currentTimeMillis() + "_" + Filenames.toSimpleFileName(file.getOriginalFilename());
         s3Client.putObject(bucketName, fileName, fileObj);
         fileObj.delete();
 
@@ -46,7 +47,7 @@ public class StorageService {
     }
 
     private File convertToFile(MultipartFile file){
-        File convFile = new File(file.getOriginalFilename());
+        File convFile = new File(Filenames.toSimpleFileName(file.getOriginalFilename()));
         try {
             FileOutputStream fos = new FileOutputStream(convFile);
             fos.write(file.getBytes());
